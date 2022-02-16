@@ -1,0 +1,88 @@
+<%- include partials/header.ejs %>
+<body>
+    <%- include partials/navbar.ejs %>
+    <div class="container">
+        <br>
+        <br>
+        <hr>
+        <div class="card" id="formulario-lista">
+            <div class="card-header">
+                <div class="row">
+                    <h3 class="col-4">Editar <%=lista.titulo %> </h3>
+                    <p class="col-7"></p>
+                    <form  method="post" action="/deletar" class="col-1" onsubmit="confirmardeletar(event,this)">
+                        <input type="hidden" name="id" value="<%=lista.id %> ">
+                    <button class="btn btn-danger" >Deletar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                
+                <form method="POST" action="<%=rota %> " enctype="multipart/form-data">
+                    <label>Título</label>
+                    <input type="text" placeholder="Título" class="form-control" name="titulo" value="<%=lista.titulo%>">
+
+                    <input type="hidden" name="id" value="<%=lista.id%>" >
+                    <br><label>Descrição</label>
+                    <textarea  class="form-control" name="descricao"><%=lista.descricao %></textarea>
+                    <br>
+                    
+                    <div class="row">
+                        <input class="col-6" type="file" name="file" id="upar"onchange="return fileValidation()">
+                        <p class="col-5"></p>  
+                        <script>
+                            function fileValidation() {
+                                var fileInput = 
+                                    document.getElementById('upar');
+                                  
+                                var filePath = fileInput.value;
+                              
+                                // Allowing file type
+                                var allowedExtensions = 
+                                        /(\.txt)$/i;
+                                  
+                                if (!allowedExtensions.exec(filePath)) {
+                                    alert('O arquivo não é um txt');
+                                    fileInput.value = '';
+                                    return false;
+                                } 
+                                else 
+                                {
+                                  
+                                    // Image preview
+                                    if (fileInput.files && fileInput.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            document.getElementById(
+                                                'imagePreview').innerHTML = 
+                                                '<img src="' + e.target.result
+                                                + '"/>';
+                                        };
+                                          
+                                        reader.readAsDataURL(fileInput.files[0]);
+                                    }
+                                }
+                            }
+                        </script>
+                        <button class="btn btn-primary col-1" type="submit" value="upload"  >Salvar</button>
+                    </div>  
+                </form>
+                <hr>   
+                <br>
+            </div>
+            
+        </div>
+    </div>
+</body>
+<%- include partials/footer.ejs %>
+
+<script>
+    function confirmardeletar(event,form){
+        event.preventDefault();
+        var decisao = confirm("Tem certeza que você quer deletar a Lista?");
+
+        if(decisao){
+            form.submit();
+        }
+    }
+</script>

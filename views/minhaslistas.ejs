@@ -1,0 +1,30 @@
+<%- include partials/header.ejs %>
+
+<body>
+    <%- include partials/navbar.ejs %>
+    <div class="container">
+        <br>
+        <br>
+        <hr>
+        <h1> Listas de Contato </h1>
+        <hr>
+        <a href="/novalista" class="btn btn-primary"> + Criar Nova Lista</a>
+        <hr>
+        <% listas.forEach(lista => { %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h3><%= lista.titulo %></h3>
+                    <h5><%=lista.descricao %> </h5>
+                    <a href="/download/<%= lista.id %>" class="btn btn-primary">Baixar Lista</a>
+                </div>
+                <div class="card-footer">
+                    <a href="/novalista/<%= lista.id %>" class="btn btn-primary">Editar</a>
+                </div>
+            </div>
+        <% }) %>
+
+    </div>
+
+</body>
+<%- include partials/footer.ejs %>
