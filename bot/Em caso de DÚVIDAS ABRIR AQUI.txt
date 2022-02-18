@@ -1,0 +1,204 @@
+Olá bem vindo ao Tutorial!
+
+
+Instalação:
+
+Devido a falta de verbas o processo de instalação é necessário, e pode ser um pouco confuso. - Em caso de dúvidas contatar pelo Whats.
+
+Passo 1 Instalndo o Python:
+
+	Instalação do Python - Segue o link de download:
+	https://www.python.org/downloads/
+	Só clicar no botão amarelo 'Download Python 3.10
+
+Passo 1.1: 
+
+	Ao executar o arquivo que você baixou do python, note que na tela de 'Optional Features' deve estar marcado todas as opções.
+	
+	- Documentation
+	- Pip (esse aqui é o mais importante)
+	- Tcl/Tk and Idle
+	- Python test suite
+	- Py launcher
+
+	Nem todos vem marcados automaticamente, por isso é necessário fazer manualmente. Caso esse passo seja esquecido não irá funcionar.
+
+Passo 2 Instalando o Selenium:
+
+	O selenium é uma das ferramentas necessárias para esta automação, para instalá-lo você deve:
+
+	- Abrir o terminal de comando do Windows (digite CMD na barra de pesquisa), Mac (não faço nem ideia, como disse não temos verbas) 
+	ou linux (terminal no menu).
+	- Digitar o seguinte comando para a instalação do Selenium:
+		pip install selenium
+	-Espere terminar o download e pode fechar a tela.
+
+
+Passo 3 Lista de contatos:
+
+	Gerar uma lista de contatos podendo ser nomes ou números, desde que tenha alguma conversa ou tenha o contato salvo em seu telefone.
+	Os contatos devem estar dispostos 1 por linha dentro do arquivo com o nome de 'pessoas'. 
+
+Passo 4 Grupo de Envio:
+
+	No Whats a ser utilizado para envio das mensagens do bot, criar um grupo com o nome de 'Envio' sem as aspas simples.
+	Colocar a sua mensagem para envio neste grupo - note que a mensagem deve conter o botão da flechina (encaminhar).
+
+Passo 5 executando o arquivo:
+
+	Execute o arquivo botv2.py
+
+Passo 6 Conectando ao Whatsapp Web:
+
+	Ao executar o arquivo botv2.py uma tela do chrome irá surgir e entrar no whatsapp web, entre no whats do celular desejado e vá em 
+	-> 3 pontinhos -> 'Aparelhos conectados', - > 'Conectar novo aparelho'. 
+	Aponte a camera para o qr code que aparece no site do whatsappweb.
+
+Passo 7 Observe:
+	
+	Pronto você finalmente pode sentar pegar um chimarrão e relaxar, o bot vai rodar sozinho a partir daqui!
+
+
+EM CASO DE ERROS VEJA AS DICAS ABAIXO:
+
+Problema 1: Não consigo instalar o selenium do passo 2!
+
+	Esse pode ocorrer quando você está sem internet ou então não instalou o python devidamente no passo 1, deixando de fora a opção
+	pip - que é o instalador do selenium. Repita o passo 1 adequadamente e tudo será resolvido.
+
+Problema 2: Não consigo executar o arquivo botv2.py!
+
+	Esse problema pode ocorrer caso o passo 1 tenha sido feito incorretamente, ou então por algum motivo o python não foi instalado
+	globalmente na sua máquina. Porém nada tema, você pode tentar re-instalar o python no passo 1, ou se isso ainda não funcionar faça
+	o seguinte:
+	
+	- Abra o seu terminal de comando, pode ser o power shell também, ou ainda alguma Ide como o vs code por exemplo.
+	- Navegue até a pasta 'Projetobot'
+		- Para fazer isso é bem simples, digite cd - Nome da próxima pasta, por padrão ele começa na pasta inicial do seu usuário do
+	 computador então você terá que fazer algo como:
+			cd "Área de Trabalho"
+			cd "Projetobot"
+		Isso caso você tenha deixado na área de trabalho essa pasta.
+
+		Se não estiver achando onde essa pasta está pelo terminal de comando faça o seguinte:
+		Abra a pasta no explorador de arquivos "Pasta amarela".
+		Clique duas vezes na parte de cima onde deve estar escrito "Projetobot".
+		Vai aparecer o caminho completo da pasta como o exemplo abaixo:
+		C:\Users\marce\OneDrive\Área de Trabalho\Projetobot
+
+		Após descobrir o caminho dela fica mais fácil.
+		Abra novamente o terminal de comando e observe onde está piscando o _ 
+		Antes dele é o que diz qual a pasta você está, como no exemplo:
+		C:\Users\marce> _
+		
+		depois disso digite cd + o nome da sua próxima pasta até chegar em "Projetobot", no exemplo:
+		
+		cd OneDrive
+		cd "Área de trabalho"
+		cd "Projetobot"
+		
+		uma dica é que você pode usar o tab para navegar entre as pastas, apertando tab ele começa em ordem alfabética e cada vez
+		que você aperta ele passa para a próxima.
+		
+		Se por algum motivo você precisar voltar uma pasta, o comando é:
+		
+		cd..
+
+	- Agora que você finalmente está na pasta do "Projetobot" no terminal de comando digite o seguinte comando:
+	
+	python botv2.py
+	
+	- O arquivo agora vai executar com o python.
+
+Problema 3: O Arquivo abre rapidamente e depois fecha!
+
+	Isso pode ser causado por até 4 problemas, você precisa testar 1 por 1 para descobrir qual é, o mais comum é o 3.2.	
+
+	Problema 3.1:
+		Você não tem o chrome instalado no seu computador, bom você vai ter que baixá-lo. O bot só funciona no chrome.
+	
+	Problema 3.2:
+
+		Esse aqui é o mais chato, de mês em mês mais ou menos o chrome atualiza e você nem percebe. Por conta disso esse provavelmente
+		será o seu problema mais recorrente. Para resolve-lo faça o seguinte:
+
+		Dentro da sua pasta "Projetobot" tem um arquivo chamado "chromedriver".
+		Delete esse arquivo da pasta.
+		Abra o seu navegador chrome e clique -> 3 pontinhos -> Ajuda -> Sobre o Google Chrome. 
+		Isso vai abrir uma página onde mostra a versão que o chrome está lembre-se da versão.
+		Acesse esse site aqui:
+			https://chromedriver.chromium.org/downloads
+		Baixe a versão correspondente ao seu navegador e sistema operacional.
+		Depois que você baixar o arquivo, ele virá em .zip você precisa extraí-lo na pasta "Projetobot"
+		Execute novamente o programa "botv2.py"
+
+	Problema 3.3:
+		Esse problema provavelmente pode (apesar de muito dificil), vir acontecer no início, porém diferente do outro pode ser 
+		resolvido apenas uma vez, caso você não mude a pasta de local. 
+		
+		O que acontece é o seguinte, o programa precisa acessar os arquivos "chromedriver" e "pessoas.txt" e ele não consegue achar o
+		caminho para estes arquivos. Como resolver:
+		
+		- Abra a pasta "Projetobot"
+		- Clique 2 vezes na parte de cima onde diz o nome da pasta.
+		- Copie o caminho da pasta.
+		- Abra o arquivo botv2.py com algum editor de texto.
+			- Você pode clicar com o botão direito em cima e clicar -> Abrir com -> Bloco de notas.
+		- Vá até a linha 12.
+			Nela vai estar escrito o seguinte:
+				arquivoc = open("pessoas.txt",'rb')
+			O que você precisa fazer é colar o caminho da pasta antes de 'pessoas.txt' e adiconar uma barra '/'.
+			É importante notar que ao colar ele vai ficar assim:
+				arquivoc = open("C:\Users\marce\OneDrive\Área de Trabalho\Projetobot/pessoas.txt",'rb')
+			As barras elas vem invertidas, você deve trocar pelas certas '/'.
+			Deve ficar mais ou menos assim:
+				arquivoc = open("C:/Users/marce/OneDrive/Área de Trabalho/Projetobot/pessoas.txt",'rb')
+			obs: o caminho do arquivo deve estar entre "" aspas. Não apague elas sem querer.
+		- Vá até a linha 26.
+			Nela vai estar escrito o seguinte:
+				self.driver = webdriver.Chrome(executable_path=r'chromedriver.exe', chrome_options=options)
+			Agora faça a mesma coisa do passo anterior, ficando mais ou menos assim:
+				self.driver = webdriver.Chrome(executable_path=r'C:/Users/marce/OneDrive/Área de Trabalho/Projetobot/chromedriver.exe', chrome_options=options)
+		- Salve as alterações e execute o programa novamente.
+
+	Problema 3.4:
+		Caso nada tenha funcionado até agora, você provavelmente, alterou o nome de algum arquivo ou então excluiu. 
+		Dentro da pasta "Projetobot" eles devem existir as seguintes pastas com os seguintes nomes:
+		
+		__init__.py
+		__pycache__
+		build
+		dist
+		bot.spec
+		botv2
+		chromedriver
+		debug
+		funcoes
+		LogErro
+		pessoas
+
+		Se alguma coisa não estiver assim, não vai funcionar corretamente.
+
+Problema 4: O programa abriu o chrome, entrou no whats mas não está achando o grupo com a mensagem!
+	O nome do  grupo deve ser obrigatóriamente 'Envio', sem as aspas simples, para que o programa funcione.
+
+Problema 5: O programa entrou no grupo 'Envio', porém não está fazendo mais nada!
+	Verifique se a mensagem que você enviou tem o botão de encaminhar, se não tiver, não funciona.
+
+Problema 6: A mensagem que ele está enviando não é a correta!
+	Aconselhamos que mensagens antigas sejam apagadas do celular que está enviando a mensagem, de forma que apenas a correta apareça no 
+	grupo. Se ainda estiver dando errado, apague o grupo atual e crie um novo com o mesmo nome.
+
+
+Bom depois de tantos problemas e dor de cabeça se você chegou até aqui e ainda não consiguiu resolver, contate us guri.
+
+Obs: atendimentos fora do horário nobre serão cobrados taxa extra.
+
+Espero que tenha ajudado!
+		
+		
+			
+		
+	
+
+	
