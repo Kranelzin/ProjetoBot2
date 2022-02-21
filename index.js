@@ -16,6 +16,8 @@ var envioumavez = 0;
 const storage = multer.diskStorage({
 
     destination: function(req,file,cb){
+        //VERIFICA SE EXISTE A PASTA BOT, SE NÃO, CRIA.
+        if(!fs.existsSync('../bot')) fs.mkdirSync('../bot')
         cb(null,"../bot/");
     },
     
@@ -46,7 +48,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // Rotas
-
 app.get("/",(req,res)=>{
 
     Lista.findAll({ raw: true, order:[
@@ -60,24 +61,22 @@ app.get("/",(req,res)=>{
 });
 
 app.post("/enviopython",(req,res)=>{
-    var enviopython = req.body.enviopython;
-    console.log("aqui é a lista! "+enviopython);
-    if (envioumavez !=0){
-        
-        res.render("qrcode")
-    }
-    else{
-        enviar(enviopython)
-    }
-    res.render("qrcode")
+    //PEGO OS "LISTA.CONTATOS DIRETAMENTE DO FORM"   
+    var enviopython = (typeof(req.body.lista) === 'string') ? [req.body.lista] : req.body.lista;
+    console.log("aqui é a lista! "+ enviopython);
+    //RETIROU O IF COM ENVIOU UMA VEZ PORQUE SE EU RETORNAR E SELECIONAR MAIS UM CHECKBOX, ELE NÃO SALVA OS CONTATOS NOVAMENTE
+    enviar(enviopython)
+    res.send({result: enviopython})
+    // res.render("qrcode")         COMENTEI AQUI PARA NÃO PODER VER O RESULTADO
 });
 function enviar(enviopython){
-    fs.unlink("../bot/pessoas.txt",err4=>{
-        if (err4) console.log(err4);
-        else {
-            console.log("\nDeleted file: example_file.txt");
-        
-    }});
+    // VERIFICO ANTES SE O ARQUIVO EXISTE, ASSIM EVITA MENSAGEM DE ERRO
+    if (fs.existsSync("../bot/pessoas.txt")){
+        fs.unlink("../bot/pessoas.txt", (err4) => {
+            if (err4) console.log(err4);
+            else console.log("\nDeleted file: pessoas.txt");
+        });
+    }
     fs.writeFile('../bot/pessoas.txt',"", function (err) {
         if (err) return console.log(err);
         console.log('Hello World > helloworld.txt');
@@ -87,11 +86,11 @@ function enviar(enviopython){
 
     for (var i in enviopython){
 
-        fs.readFile("../bot/"+enviopython[i]+".txt", 'utf8' , (err, data) => {
+        fs.readFile("../bot/"+enviopython[i], 'utf8' , (err, data) => {
             if (err) return console.error(err);
             console.log("este é o texto "+data)
 
-            fs.appendFile('../bot/pessoas.txt', data+"\n", function (err5) {
+            fs.appendFile('../bot/pessoas.txt', data + "\n", function (err5) {
                 if (err5) return console.log(err5);
                 console.log('Hello World > pessoas.txt');
             });
@@ -125,7 +124,6 @@ app.get("/minhaslistas",(req, res) => {
     });
 });
 
-
 app.get("/novalista",(req, res) => {
     res.render("novalista");
 });
@@ -147,7 +145,7 @@ app.post("/salvarlista",upload.single("file"),(req, res) => {
         contatos:contatos
     }).then(() => {
         res.redirect("/minhaslistas");
-        res.clearCookie();
+        // res.clearCookie(); ESTA DANDO PROBLEMA AO LIMPAR O HEADER
     });
     idcontato++;
 });
@@ -239,4 +237,4 @@ app.post("/deletar",upload.single("file"), (req,res)=>{
 
 
 
-app.listen(8080,()=>{console.log("App rodando!");})
+app.listen(process.env.PORT,()=>{console.log("App rodando!");})
